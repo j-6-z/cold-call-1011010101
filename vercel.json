@@ -3,14 +3,14 @@
   "name": "jayisaac-coldcall",
   "builds": [
     {
-      "src": "jayisaac_coldcall_v3.html",
+      "src": "index.html",
       "use": "@vercel/static"
     }
   ],
   "routes": [
     {
-      "src": "/",
-      "dest": "/jayisaac_coldcall_v3.html"
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
