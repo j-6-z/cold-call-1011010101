@@ -369,41 +369,49 @@ function buildScript(ind) {
       ]
     },
     demo_close:{
-      id:'demo_close', stage:'Demo Close', progress:48, title:'The Text Demo Close',
-      text:'"Here\'s what I\'d like to do — rather than keep you on the phone, I\'ll send you a number right now to your cell. Call it when you have 60 seconds, it\'ll show you exactly what your customers would hear when they call your business after hours. Would it be alright if I text that to you now?"',
-      tip:'This is cleaner than any 3-way call. You\'re respecting their time, moving to text, and getting their cell number in one move. Most people say yes immediately — it feels low pressure.',
+      id:'demo_close', stage:'Demo Close', progress:48, title:'The Hold + Merge Close',
+      text:'"Give me two seconds — I\'m going to put you on a brief hold and add our demo line to this call. You\'ll hear exactly what your customers experience when they call your business after hours. Takes about 60 seconds."',
+      tip:'Don\'t ask for permission — just say you\'re doing it. Confident and smooth. They stay on the line the whole time which feels more premium than any text or callback.',
       responses:[
-        {emoji:'📱',title:'Yeah go ahead, text me',sub:'Cell confirmed — send the demo number now',type:'pos',next:'demo_sent'},
-        {emoji:'📧',title:'Send me info first',sub:'Wants context before calling',type:'neu',next:'obj_send_info'},
+        {emoji:'✅',title:'Okay sure / go ahead',sub:'Put them on hold — dial Retell now',type:'pos',next:'demo_merge'},
         {emoji:'🕐',title:'Not right now, busy',sub:'Timing issue',type:'neu',next:'callback_set'},
         {emoji:'❌',title:'No thanks',sub:'Declining',type:'neg',next:'obj_not_interested'}
       ]
     },
-    demo_sent:{
-      id:'demo_sent', stage:'Demo Sent', progress:58, title:'📲 Send the Text NOW',
-      text:'<strong style="color:var(--accent)">Text them the demo number right now while they\'re on the line.</strong><br><br>Suggested text to send:<br><br><div style="margin-top:12px;padding:14px 16px;background:var(--surface);border:1px solid var(--border2);border-radius:8px;font-family:\'JetBrains Mono\',monospace;font-size:13px;line-height:1.7;color:var(--text)">Hey [Name], it\'s REP_NAME — here\'s that demo number: <span style="color:var(--accent)">[YOUR RETELL NUMBER]</span>. Give it a call when you get a sec, takes about 60 seconds. Talk soon.</div><br>Then say on the call:<br><br>"I just sent that over — it\'ll come from this number. Give it a call whenever you get a minute, even if it\'s later today, and let me know what you think."',
-      tip:'Stay on the line for another 20–30 seconds after sending. Confirm they got the text. If they\'re willing to call it right then while you wait — even better. Don\'t pressure them though.',
+    demo_merge:{
+      id:'demo_merge', stage:'Merging Call', progress:55, title:'⚡ Hold + Merge — Do This Now',
+      text:'<strong style="color:var(--accent)">In Quo — right now:</strong><br><br><div style="margin-top:14px;padding:14px 18px;background:var(--surface);border:1px solid var(--border2);border-radius:8px;font-family:\'JetBrains Mono\',monospace;font-size:12px;color:var(--text);line-height:2"><span style="color:var(--accent);font-weight:700">1</span> — Tap <strong>Hold</strong> to put them on hold<br><span style="color:var(--accent);font-weight:700">2</span> — Tap the <strong>+ button</strong> top right<br><span style="color:var(--accent);font-weight:700">3</span> — Dial your <strong>Retell demo number</strong><br><span style="color:var(--accent);font-weight:700">4</span> — Wait for Nico to answer<br><span style="color:var(--accent);font-weight:700">5</span> — Tap <strong>Merge Calls</strong></div><br>All three of you are now live. Stay silent — let Nico run for 60 seconds. Drop the Retell line after.',
+      tip:'Don\'t talk over Nico. Let the prospect interact with it naturally. After the demo ends, drop Retell and come back: "So — that\'s what your customers hear instead of voicemail. What\'d you think?"',
       responses:[
-        {emoji:'✅',title:'Got it — I\'ll call it now',sub:'Calling demo live — wait on the line',type:'pos',next:'demo_live'},
+        {emoji:'✅',title:'Merged — Nico is running',sub:'Let demo run — drop Retell after 60 sec',type:'pos',next:'demo_live'},
+        {emoji:'❌',title:'Technical issue / couldn\'t merge',sub:'Fallback — send them the number by text',type:'neg',next:'demo_sent'}
+      ]
+    },
+    demo_sent:{
+      id:'demo_sent', stage:'Demo Sent', progress:58, title:'📲 Fallback — Text The Demo Number',
+      text:'<strong style="color:var(--accent)">Text them the demo number right now while still on the call.</strong><br><br><div style="margin-top:12px;padding:14px 16px;background:var(--surface);border:1px solid var(--border2);border-radius:8px;font-family:\'JetBrains Mono\',monospace;font-size:13px;line-height:1.7;color:var(--text)">Hey [Name], it\'s REP_NAME — here\'s that demo number: <span style="color:var(--accent)">[YOUR RETELL NUMBER]</span>. Give it a call when you get 60 seconds. Talk soon.</div><br>Then say on the call:<br><br>"I just sent that over — give it a call whenever you get a minute and let me know what you think."',
+      tip:'Confirm they got the text before hanging up. If they\'re happy to call it right then while you wait — even better. Don\'t pressure though.',
+      responses:[
+        {emoji:'✅',title:'Got it — calling it now',sub:'Wait on the line',type:'pos',next:'demo_live'},
         {emoji:'📅',title:'I\'ll call it later today',sub:'Soft commit — follow up in 3 hours',type:'neu',next:'demo_followup'},
         {emoji:'🤔',title:'What is it exactly?',sub:'Needs more context',type:'neu',next:'demo_explain'}
       ]
     },
     demo_explain:{
-      id:'demo_explain', stage:'Demo Sent', progress:60, title:'What Is It Exactly?',
-      text:'"It\'s a live phone number that\'s powered by AI — same technology we\'d set up for your business. When you call it, it\'ll answer like a real receptionist, handle the conversation naturally, and you\'ll hear exactly what your customers would experience. It\'s not a recording — it\'s live."',
-      tip:'Keep it simple. Don\'t say "Retell" or get technical. They just need to know it\'s real and interactive — not a pre-recorded demo.',
+      id:'demo_explain', stage:'Demo', progress:60, title:'What Is It Exactly?',
+      text:'"It\'s a live phone number powered by AI — same technology we\'d set up for your business. When you call it, it answers like a real receptionist and handles the conversation naturally. It\'s not a recording — it\'s live, right now."',
+      tip:'Keep it simple. Don\'t say "Retell" or get technical. They just need to know it\'s real and interactive — not a voicemail or recording.',
       responses:[
-        {emoji:'📞',title:'Okay, I\'ll give it a call',sub:'Committed — follow up after',type:'pos',next:'demo_followup'},
+        {emoji:'📞',title:'Okay I\'ll give it a call',sub:'Committed — follow up after',type:'pos',next:'demo_followup'},
         {emoji:'❌',title:'Not interested',sub:'Declining',type:'neg',next:'obj_not_interested'}
       ]
     },
     demo_followup:{
-      id:'demo_followup', stage:'Follow Up', progress:63, title:'📞 After They\'ve Called the Demo',
-      text:'"Hey [Name] — just following up on that demo number I sent over. Did you get a chance to give it a call? What\'d you think?"',
-      tip:'Call back within 2–3 hours if they said "later today." If no answer, text first then call. The window is short — follow up the same day or the lead goes cold.',
+      id:'demo_followup', stage:'Follow Up', progress:63, title:'📞 Following Up After Demo',
+      text:'"Hey [Name] — just following up. Did you get a chance to give that demo a call? What\'d you think?"',
+      tip:'Call back within 2–3 hours if they said later today. Text first if no answer, then call. Same day follow-up or the lead goes cold — do not wait until tomorrow.',
       responses:[
-        {emoji:'🔥',title:'That\'s impressive / I loved it',sub:'Hot — go to close',type:'pos',next:'close'},
+        {emoji:'🔥',title:'Loved it / That\'s impressive',sub:'Hot — go to close',type:'pos',next:'close'},
         {emoji:'💰',title:'How much is it?',sub:'Buying signal — go to close',type:'pos',next:'close'},
         {emoji:'😐',title:'It was okay / Not bad',sub:'Lukewarm — handle it',type:'neu',next:'obj_lukewarm'},
         {emoji:'🤖',title:'Sounded too robotic',sub:'Voice objection',type:'neg',next:'obj_voice'},
