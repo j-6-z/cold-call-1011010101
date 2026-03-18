@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "name": "jayisaac-coldcall",
+  "builds": [
+    {
+      "src": "jayisaac_coldcall_v3.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/jayisaac_coldcall_v3.html"
+    }
+  ]
+}
