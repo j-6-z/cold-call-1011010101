@@ -369,22 +369,54 @@ function buildScript(ind) {
       ]
     },
     demo_close:{
-      id:'demo_close', stage:'Demo Close', progress:48, title:'The Live Demo Close',
-      text:'"I figured. Here\'s what I want to do — I\'m not going to pitch you anything else. I want to <span class="hl">call you right now</span> from our demo line so you can hear exactly what your customers would hear. Takes 60 seconds. You\'ll either love it or you won\'t — fair enough?"',
-      tip:'This is your power move. You\'re not asking for a meeting next week — you\'re asking for 60 seconds RIGHT NOW. Most people say yes out of pure curiosity. Don\'t soften it.',
+      id:'demo_close', stage:'Demo Close', progress:48, title:'The Text Demo Close',
+      text:'"Here\'s what I\'d like to do — rather than keep you on the phone, I\'ll send you a number right now to your cell. Call it when you have 60 seconds, it\'ll show you exactly what your customers would hear when they call your business after hours. Would it be alright if I text that to you now?"',
+      tip:'This is cleaner than any 3-way call. You\'re respecting their time, moving to text, and getting their cell number in one move. Most people say yes immediately — it feels low pressure.',
       responses:[
-        {emoji:'📞',title:'Yeah okay, call me',sub:'Demo accepted — fire it up',type:'pos',next:'demo_live'},
-        {emoji:'📧',title:'Send me info first',sub:'Wants to see something first',type:'neu',next:'obj_send_info'},
+        {emoji:'📱',title:'Yeah go ahead, text me',sub:'Cell confirmed — send the demo number now',type:'pos',next:'demo_sent'},
+        {emoji:'📧',title:'Send me info first',sub:'Wants context before calling',type:'neu',next:'obj_send_info'},
         {emoji:'🕐',title:'Not right now, busy',sub:'Timing issue',type:'neu',next:'callback_set'},
-        {emoji:'❌',title:'No thanks',sub:'Declining demo',type:'neg',next:'obj_not_interested'}
+        {emoji:'❌',title:'No thanks',sub:'Declining',type:'neg',next:'obj_not_interested'}
+      ]
+    },
+    demo_sent:{
+      id:'demo_sent', stage:'Demo Sent', progress:58, title:'📲 Send the Text NOW',
+      text:'<strong style="color:var(--accent)">Text them the demo number right now while they\'re on the line.</strong><br><br>Suggested text to send:<br><br><div style="margin-top:12px;padding:14px 16px;background:var(--surface);border:1px solid var(--border2);border-radius:8px;font-family:\'JetBrains Mono\',monospace;font-size:13px;line-height:1.7;color:var(--text)">Hey [Name], it\'s REP_NAME — here\'s that demo number: <span style="color:var(--accent)">[YOUR RETELL NUMBER]</span>. Give it a call when you get a sec, takes about 60 seconds. Talk soon.</div><br>Then say on the call:<br><br>"I just sent that over — it\'ll come from this number. Give it a call whenever you get a minute, even if it\'s later today, and let me know what you think."',
+      tip:'Stay on the line for another 20–30 seconds after sending. Confirm they got the text. If they\'re willing to call it right then while you wait — even better. Don\'t pressure them though.',
+      responses:[
+        {emoji:'✅',title:'Got it — I\'ll call it now',sub:'Calling demo live — wait on the line',type:'pos',next:'demo_live'},
+        {emoji:'📅',title:'I\'ll call it later today',sub:'Soft commit — follow up in 3 hours',type:'neu',next:'demo_followup'},
+        {emoji:'🤔',title:'What is it exactly?',sub:'Needs more context',type:'neu',next:'demo_explain'}
+      ]
+    },
+    demo_explain:{
+      id:'demo_explain', stage:'Demo Sent', progress:60, title:'What Is It Exactly?',
+      text:'"It\'s a live phone number that\'s powered by AI — same technology we\'d set up for your business. When you call it, it\'ll answer like a real receptionist, handle the conversation naturally, and you\'ll hear exactly what your customers would experience. It\'s not a recording — it\'s live."',
+      tip:'Keep it simple. Don\'t say "Retell" or get technical. They just need to know it\'s real and interactive — not a pre-recorded demo.',
+      responses:[
+        {emoji:'📞',title:'Okay, I\'ll give it a call',sub:'Committed — follow up after',type:'pos',next:'demo_followup'},
+        {emoji:'❌',title:'Not interested',sub:'Declining',type:'neg',next:'obj_not_interested'}
+      ]
+    },
+    demo_followup:{
+      id:'demo_followup', stage:'Follow Up', progress:63, title:'📞 After They\'ve Called the Demo',
+      text:'"Hey [Name] — just following up on that demo number I sent over. Did you get a chance to give it a call? What\'d you think?"',
+      tip:'Call back within 2–3 hours if they said "later today." If no answer, text first then call. The window is short — follow up the same day or the lead goes cold.',
+      responses:[
+        {emoji:'🔥',title:'That\'s impressive / I loved it',sub:'Hot — go to close',type:'pos',next:'close'},
+        {emoji:'💰',title:'How much is it?',sub:'Buying signal — go to close',type:'pos',next:'close'},
+        {emoji:'😐',title:'It was okay / Not bad',sub:'Lukewarm — handle it',type:'neu',next:'obj_lukewarm'},
+        {emoji:'🤖',title:'Sounded too robotic',sub:'Voice objection',type:'neg',next:'obj_voice'},
+        {emoji:'👋',title:'Haven\'t called it yet',sub:'Re-commit or reschedule',type:'neu',next:'callback_set'},
+        {emoji:'❌',title:'Not for me',sub:'Post-demo rejection',type:'neg',next:'obj_not_interested'}
       ]
     },
     demo_live:{
-      id:'demo_live', stage:'Demo Running', progress:65, title:'⚡ Trigger Your Demo Line NOW',
-      text:'<strong style="color:var(--accent)">Call them now from your Retell demo line.</strong><br><br>After the call, say:<br><br>"Okay — so that\'s it. That\'s what your customers hear when they call you at 10pm on a Friday instead of voicemail. What\'d you think?"',
-      tip:'Go completely silent after "what\'d you think?" Do NOT fill the gap. Their first reaction is everything. If they say anything positive, go straight to the close.',
+      id:'demo_live', stage:'Demo Live', progress:65, title:'⚡ They\'re Calling It Now — Wait',
+      text:'<strong style="color:var(--accent)">Stay on the line. They\'re calling the demo number now.</strong><br><br>After they hang up from the demo, say:<br><br>"So — that\'s exactly what your customers would hear when they call you after hours instead of getting voicemail. What\'d you think?"',
+      tip:'Go completely silent after "what\'d you think?" Don\'t fill the gap. Their first reaction tells you everything. If they say anything positive — even "it\'s pretty good" — go straight to the close.',
       responses:[
-        {emoji:'🔥',title:'That\'s impressive / I love it',sub:'Hot lead — close now',type:'pos',next:'close'},
+        {emoji:'🔥',title:'That\'s impressive / I love it',sub:'Hot — close now',type:'pos',next:'close'},
         {emoji:'💰',title:'How much is it?',sub:'Buying signal — go to close',type:'pos',next:'close'},
         {emoji:'😐',title:'It\'s okay / Not bad',sub:'Lukewarm — handle it',type:'neu',next:'obj_lukewarm'},
         {emoji:'🤖',title:'Sounds too robotic',sub:'Voice objection',type:'neg',next:'obj_voice'},
@@ -424,7 +456,7 @@ function buildScript(ind) {
     },
     obj_price_early:{
       id:'obj_price_early', stage:'Objection', progress:32, title:'🚧 Price Question Early',
-      text:'"Fair question — starts at <span class="hl-price">$297/month</span>. But honestly that number means nothing until you hear how it sounds. Let me call you from the demo line — 60 seconds — and then you\'ll know if it\'s even worth the conversation. Sound fair?"',
+      text:'"Fair question — starts at <span class="hl-price">$297/month</span>. But that number really doesn\'t mean anything until you hear how it sounds. What I\'d like to do is text you a demo number right now — call it when you have 60 seconds and you\'ll know immediately if it\'s even worth the conversation. Can I send that to you?"',
       tip:'Price before the demo kills deals. The demo is what makes $297 feel obvious. Redirect every single time — do not negotiate price before they\'ve heard it.',
       responses:[
         {emoji:'📞',title:'Okay sure',sub:'Demo accepted',type:'pos',next:'demo_live'},
@@ -452,11 +484,11 @@ function buildScript(ind) {
     },
     obj_send_info:{
       id:'obj_send_info', stage:'Objection', progress:52, title:'🚧 Send Info First',
-      text:'"For sure — I\'ll shoot that over right now. Honest heads up though: most people who look at the website first don\'t really get it until they hear it. What if I send the info AND we do the 60-second demo call — both at the same time? That way you\'ve got the full picture."',
+      text:'"For sure — I\'ll shoot that over right now. Honest heads up though: most people who look at the website first don\'t really get it until they hear it. What if I send you the website link AND the demo number in the same text — you can do both at the same time and have the full picture?"',
       tip:'Agree to send immediately — but bundle it with the demo. Send the info the second you hang up regardless. A person who gets info but no demo call is a dead lead.',
       responses:[
-        {emoji:'📞',title:'Okay, go ahead and call',sub:'Demo accepted',type:'pos',next:'demo_live'},
-        {emoji:'📧',title:'Just send the info for now',sub:'Soft no — get their email, follow up 24hrs',type:'neu',next:'callback_set'}
+        {emoji:'📱',title:'Yeah text it over',sub:'Demo number sent — go to demo_sent',type:'pos',next:'demo_sent'},
+        {emoji:'📧',title:'Just send the info for now',sub:'Soft no — send site link, follow up 24hrs',type:'neu',next:'callback_set'}
       ]
     },
     obj_lukewarm:{
