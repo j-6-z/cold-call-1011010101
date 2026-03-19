@@ -346,7 +346,7 @@ function buildScript(ind) {
   return {
     opener:{
       id:'opener', stage:'Opener', progress:8, title:'Opening Line',
-      text:'"Hey — is this the owner? Hey, my name\'s <span class="hl-name">REP_NAME</span> — I\'ll be upfront, this is a cold call. Got 30 seconds for me?"',
+      text:'"Hey — is this the owner? <span class="hl-name">REP_NAME</span> calling. I\'ll be straight — this is a cold call. Got 30 seconds?"',
       tip:'Saying "cold call" upfront is the pattern interrupt. It builds instant credibility and drops their guard. Pause hard after the question — let silence do the work.',
       responses:[
         {emoji:'✅',title:'Yeah go ahead',sub:'Time granted — go to pitch',type:'pos',next:'pitch'},
@@ -357,7 +357,7 @@ function buildScript(ind) {
     },
     pitch:{
       id:'pitch', stage:'Pitch', progress:25, title:'The 30-Second Pitch',
-      text:'"So I help <span class="hl">'+d.name.toLowerCase()+'</span> stop losing jobs to missed calls. We set up an AI receptionist that answers your phone <span class="hl">24/7</span> — books appointments, handles after-hours, captures every lead while you\'re on a job. Quick question — <span class="hl">'+d.painLine+'</span>"',
+      text:'"I help <span class="hl">'+d.name.toLowerCase()+'</span> stop losing jobs to missed calls. AI receptionist, answers 24/7, books appointments, catches every lead while you\'re on a job. Quick question — <span class="hl">'+d.painLine+'</span>"',
       stat:d.statLine,
       tip:'End on a question specific to their trade — gets them talking about their own pain. Don\'t rush. The question lands harder with a beat of silence before it.',
       afterHours:d.afterHours,
@@ -370,7 +370,7 @@ function buildScript(ind) {
     },
     demo_close:{
       id:'demo_close', stage:'Demo Close', progress:48, title:'The Hold + Merge Close',
-      text:'"Give me two seconds — I\'m going to put you on a brief hold and add our demo line to this call. You\'ll hear exactly what your customers experience when they call your business after hours. Takes about 60 seconds."',
+      text:'"Give me two seconds. I\'m putting you on hold and adding our demo line to this call. You\'ll hear exactly what your customers would hear. 60 seconds."',
       tip:'Don\'t ask for permission — just say you\'re doing it. Confident and smooth. They stay on the line the whole time which feels more premium than any text or callback.',
       responses:[
         {emoji:'✅',title:'Okay sure / go ahead',sub:'Put them on hold — dial Retell now',type:'pos',next:'demo_merge'},
@@ -389,7 +389,7 @@ function buildScript(ind) {
     },
     demo_sent:{
       id:'demo_sent', stage:'Demo Sent', progress:58, title:'📲 Fallback — Text The Demo Number',
-      text:'<strong style="color:var(--accent)">Text them the demo number right now while still on the call.</strong><br><br><div style="margin-top:12px;padding:14px 16px;background:var(--surface);border:1px solid var(--border2);border-radius:8px;font-family:\'JetBrains Mono\',monospace;font-size:13px;line-height:1.7;color:var(--text)">Hey [Name], it\'s REP_NAME — here\'s that demo number: <span style="color:var(--accent)">[YOUR RETELL NUMBER]</span>. Give it a call when you get 60 seconds. Talk soon.</div><br>Then say on the call:<br><br>"I just sent that over — give it a call whenever you get a minute and let me know what you think."',
+      text:'<strong style="color:var(--accent)">Text them the demo number right now.</strong><br><br><div style="margin-top:12px;padding:14px 16px;background:var(--surface);border:1px solid var(--border2);border-radius:8px;font-family:\'JetBrains Mono\',monospace;font-size:13px;line-height:1.7;color:var(--text)">Hey [Name], REP_NAME here — demo number: <span style="color:var(--accent)">[YOUR RETELL NUMBER]</span>. Call it when you get 60 sec.</div><br>Then say:<br><br>"Just sent it. Call it whenever — let me know what you think."',
       tip:'Confirm they got the text before hanging up. If they\'re happy to call it right then while you wait — even better. Don\'t pressure though.',
       responses:[
         {emoji:'✅',title:'Got it — calling it now',sub:'Wait on the line',type:'pos',next:'demo_live'},
@@ -399,7 +399,7 @@ function buildScript(ind) {
     },
     demo_explain:{
       id:'demo_explain', stage:'Demo', progress:60, title:'What Is It Exactly?',
-      text:'"It\'s a live phone number powered by AI — same technology we\'d set up for your business. When you call it, it answers like a real receptionist and handles the conversation naturally. It\'s not a recording — it\'s live, right now."',
+      text:'"It\'s a live AI line — same tech we\'d set up for you. Call it and it answers like a real receptionist. Not a recording. It\'s live right now."',
       tip:'Keep it simple. Don\'t say "Retell" or get technical. They just need to know it\'s real and interactive — not a voicemail or recording.',
       responses:[
         {emoji:'📞',title:'Okay I\'ll give it a call',sub:'Committed — follow up after',type:'pos',next:'demo_followup'},
@@ -408,7 +408,7 @@ function buildScript(ind) {
     },
     demo_followup:{
       id:'demo_followup', stage:'Follow Up', progress:63, title:'📞 Following Up After Demo',
-      text:'"Hey [Name] — just following up. Did you get a chance to give that demo a call? What\'d you think?"',
+      text:'"Hey [Name] — <span class="hl-name">REP_NAME</span>. Did you get a chance to call that demo? What\'d you think?"',
       tip:'Call back within 2–3 hours if they said later today. Text first if no answer, then call. Same day follow-up or the lead goes cold — do not wait until tomorrow.',
       responses:[
         {emoji:'🔥',title:'Loved it / That\'s impressive',sub:'Hot — go to close',type:'pos',next:'close'},
@@ -421,7 +421,7 @@ function buildScript(ind) {
     },
     demo_live:{
       id:'demo_live', stage:'Demo Live', progress:65, title:'⚡ They\'re Calling It Now — Wait',
-      text:'<strong style="color:var(--accent)">Stay on the line. They\'re calling the demo number now.</strong><br><br>After they hang up from the demo, say:<br><br>"So — that\'s exactly what your customers would hear when they call you after hours instead of getting voicemail. What\'d you think?"',
+      text:'<strong style="color:var(--accent)">Stay on the line. They\'re hearing Nico live.</strong><br><br>After the demo — drop Retell, come back and say:<br><br>"That\'s it. That\'s what your customers hear instead of voicemail. What do you think?"',
       tip:'Go completely silent after "what\'d you think?" Don\'t fill the gap. Their first reaction tells you everything. If they say anything positive — even "it\'s pretty good" — go straight to the close.',
       responses:[
         {emoji:'🔥',title:'That\'s impressive / I love it',sub:'Hot — close now',type:'pos',next:'close'},
@@ -433,7 +433,7 @@ function buildScript(ind) {
     },
     close:{
       id:'close', stage:'Close', progress:82, title:'The Close',
-      text:'"So we have three tiers depending on what you need. Most guys start at <span class="hl-price">$297/month</span> — 24/7 answering, appointment booking, full after-hours coverage. We get you live in <span class="hl">24 to 48 hours</span>. Want to just get you set up today?"',
+      text:'"<span class="hl-price">$297/month</span>. 24/7 answering, books appointments, handles after-hours. You\'re live in <span class="hl">48 hours</span>. Want to get set up today?"',
       tip:'Lead with $297. Don\'t list all three tiers unless they ask. Silence after "today?" is your single most powerful tool. Do not break it first — even if it\'s uncomfortable.',
       responses:[
         {emoji:'🏆',title:'Yes — let\'s do it',sub:'CLOSED',type:'pos',next:'outcome_win'},
@@ -446,7 +446,7 @@ function buildScript(ind) {
     // ── OBJECTIONS ──────────────────────
     obj_no_time:{
       id:'obj_no_time', stage:'Objection', progress:12, title:'🚧 No Time',
-      text:'"Totally fair — I\'ll be one sentence. I help '+d.name.toLowerCase()+' stop losing jobs to missed calls. If I called you back at a better time, when works best — morning or afternoon?"',
+      text:'"Fair enough. I help '+d.name.toLowerCase()+' stop losing jobs to missed calls. Morning or afternoon work better for a quick call back?"',
       tip:'Give them a binary choice for callback time — morning or afternoon. It\'s easier to say yes to than "when can I call you back?"',
       responses:[
         {emoji:'📅',title:'Call me at [time]',sub:'Callback booked',type:'pos',next:'callback_set'},
@@ -455,7 +455,7 @@ function buildScript(ind) {
     },
     obj_receptionist:{
       id:'obj_receptionist', stage:'Objection', progress:30, title:'🚧 Already Have Someone Answering',
-      text:'"That\'s great — so for after-hours calls, weekends, when your receptionist is sick or on lunch — who\'s catching those? Because that\'s usually where guys are losing leads without even realizing it."',
+      text:'"Good. What about after hours, weekends, when they\'re sick? That\'s where the jobs are slipping through."',
       tip:'Don\'t fight the receptionist. Attack the gaps — after hours, weekends, sick days, holidays. Every business has them. Let them say it out loud themselves.',
       responses:[
         {emoji:'🔥',title:'Hmm, we do miss some',sub:'Pain opened — go to demo close',type:'pos',next:'demo_close'},
@@ -464,7 +464,7 @@ function buildScript(ind) {
     },
     obj_price_early:{
       id:'obj_price_early', stage:'Objection', progress:32, title:'🚧 Price Question Early',
-      text:'"Fair question — starts at <span class="hl-price">$297/month</span>. But that number really doesn\'t mean anything until you hear how it sounds. What I\'d like to do is text you a demo number right now — call it when you have 60 seconds and you\'ll know immediately if it\'s even worth the conversation. Can I send that to you?"',
+      text:'"<span class="hl-price">$297/month</span>. But that number means nothing until you hear it. Give me 60 seconds to add the demo to this call and you\'ll know if it\'s worth talking about."',
       tip:'Price before the demo kills deals. The demo is what makes $297 feel obvious. Redirect every single time — do not negotiate price before they\'ve heard it.',
       responses:[
         {emoji:'📞',title:'Okay sure',sub:'Demo accepted',type:'pos',next:'demo_live'},
@@ -473,7 +473,7 @@ function buildScript(ind) {
     },
     obj_not_interested:{
       id:'obj_not_interested', stage:'Objection', progress:35, title:'🚧 Not Interested',
-      text:'"Completely respect that. Last question before I let you go — is it the timing, or is it that missed calls just aren\'t a big enough problem for your business right now?"',
+      text:'"Got it. Last question — is it bad timing, or do you genuinely not see missed calls costing you jobs?"',
       tip:'"Not interested" almost always means one specific thing they haven\'t said yet. Diagnose it before you give up. This question surfaces the real objection.',
       responses:[
         {emoji:'📅',title:'Timing is just bad right now',sub:'Not now — get a callback date',type:'neu',next:'callback_set'},
@@ -483,7 +483,7 @@ function buildScript(ind) {
     },
     obj_no_pain:{
       id:'obj_no_pain', stage:'Objection', progress:38, title:'🚧 Don\'t See The Problem',
-      text:'"Totally get it. Quick test — next time you\'re on a job, check your missed calls. Most owners are shocked. <span class="hl-stat">'+d.urgencyLine+'</span> I\'ll shoot you a text — if you check your missed calls and it\'s more than you thought, just reply and we\'ll talk."',
+      text:'"Check your missed calls next time you\'re on a job. Most guys are shocked. <span class="hl-stat">'+d.urgencyLine+'</span> I\'ll text you — if the number surprises you, hit me back."',
       tip:'Plant the seed and exit clean. Send the text immediately after hanging up. Some of your best clients will be the ones who text back 3 days later after seeing their missed call log.',
       responses:[
         {emoji:'📲',title:'Sure, send me the text',sub:'Soft yes — follow up in 48hrs',type:'pos',next:'callback_set'},
@@ -492,7 +492,7 @@ function buildScript(ind) {
     },
     obj_send_info:{
       id:'obj_send_info', stage:'Objection', progress:52, title:'🚧 Send Info First',
-      text:'"For sure — I\'ll shoot that over right now. Honest heads up though: most people who look at the website first don\'t really get it until they hear it. What if I send you the website link AND the demo number in the same text — you can do both at the same time and have the full picture?"',
+      text:'"I\'ll send it. Fair warning — most people who read the site don\'t get it until they hear it. Let me text you the site link and the demo number together. 60 seconds and you\'ll have the full picture."',
       tip:'Agree to send immediately — but bundle it with the demo. Send the info the second you hang up regardless. A person who gets info but no demo call is a dead lead.',
       responses:[
         {emoji:'📱',title:'Yeah text it over',sub:'Demo number sent — go to demo_sent',type:'pos',next:'demo_sent'},
@@ -501,7 +501,7 @@ function buildScript(ind) {
     },
     obj_lukewarm:{
       id:'obj_lukewarm', stage:'Objection', progress:70, title:'🚧 Lukewarm After Demo',
-      text:'"It gets a lot better once it\'s trained on your actual business — your service area, how you book jobs, what you charge. What you heard was a generic demo. What specifically felt off to you?"',
+      text:'"The demo is generic. Once it\'s trained on your business — your area, your prices, how you book — it\'s a different animal. What felt off?"',
       tip:'Get them talking about specifics. The more they engage with details, the more they\'re mentally trying it on. Specificity = buying intent.',
       responses:[
         {emoji:'🤖',title:'The voice sounded robotic',sub:'Voice objection',type:'neu',next:'obj_voice'},
@@ -512,7 +512,7 @@ function buildScript(ind) {
     },
     obj_voice:{
       id:'obj_voice', stage:'Objection', progress:73, title:'🚧 Sounds Robotic',
-      text:'"That\'s the #1 thing that surprises people after they go live. Your customers don\'t know it\'s AI — they think it\'s a real receptionist. We\'ve had owners tell us their customers actually complimented \'the girl who answered the phone.\' The voice tech has come a really long way. The only real way to see it is to try it with your actual callers."',
+      text:'"That\'s what everyone says before they go live. After? Their customers think it\'s a real person. We\'ve had owners get compliments on their receptionist. Only way to know for sure is to try it."',
       tip:'Use that specific social proof story — the owner getting a compliment. It\'s concrete and memorable. Keep it short — don\'t over-explain.',
       responses:[
         {emoji:'✅',title:'Okay I\'m willing to try it',sub:'Back on track — close',type:'pos',next:'close'},
@@ -521,7 +521,7 @@ function buildScript(ind) {
     },
     obj_fit:{
       id:'obj_fit', stage:'Objection', progress:72, title:'🚧 Not Sure It Fits My Business',
-      text:'"What does your current call flow look like? Like when someone calls you right now, walk me through what happens."',
+      text:'"Walk me through what happens when someone calls you right now."',
       tip:'Get them describing their own process out loud. They\'ll identify the gaps themselves — you won\'t have to point them out. Active listening here is everything.',
       responses:[
         {emoji:'🔥',title:'They describe gaps or issues',sub:'Pain confirmed — go to close',type:'pos',next:'close'},
@@ -530,7 +530,7 @@ function buildScript(ind) {
     },
     obj_think:{
       id:'obj_think', stage:'Objection', progress:86, title:'🚧 Need to Think About It',
-      text:'"Totally — what\'s the main thing holding you back? Is it the price, or just not 100% sure it\'ll work for your specific business?"',
+      text:'"What\'s holding you back — the price or not sure it\'ll work?"',
       tip:'"Need to think" almost always means one specific thing they haven\'t said. Find out what it is before you leave. Guessing wrong burns the lead.',
       responses:[
         {emoji:'💸',title:'The price',sub:'Price objection — handle it',type:'neu',next:'obj_price_close'},
@@ -540,7 +540,7 @@ function buildScript(ind) {
     },
     obj_price_close:{
       id:'obj_price_close', stage:'Objection', progress:88, title:'🚧 Too Expensive',
-      text:'"I hear you. Think about it this way — if you\'re missing even <span class="hl">2 calls a month</span> that would\'ve been <span class="hl">'+d.jobValue+'</span> jobs, you\'re already losing more than it costs. We\'re at <span class="hl-price">$297</span>. And if it\'s not pulling its weight in the first 30 days, we\'ll figure it out together. The risk is on us."',
+      text:'"If you\'re missing 2 jobs a month that would\'ve been <span class="hl">'+d.jobValue+'</span> — you\'re already losing more than <span class="hl-price">$297</span>. If it doesn\'t work in 30 days, we fix it. Risk is on us."',
       tip:'Reframe price as ROI using their own job values. Make the math undeniable and unemotional. Never drop your price — it signals the product isn\'t worth what you said it was.',
       responses:[
         {emoji:'✅',title:'That makes sense / okay',sub:'Objection handled — close',type:'pos',next:'close'},
@@ -550,7 +550,7 @@ function buildScript(ind) {
     },
     obj_will_work:{
       id:'obj_will_work', stage:'Objection', progress:88, title:'🚧 Not Sure It\'ll Work',
-      text:'"That\'s exactly the right question. Here\'s how it works — we set it up, train it on your business, and you\'re live in 48 hours. If something\'s off, we fix it. You\'re not locked into anything crazy. What would it take for you to feel confident enough to just try it?"',
+      text:'"Setup takes 48 hours. If something\'s off, we fix it. No long contracts. What would it take to just try it?"',
       tip:'Ask them what it would take. Then give it to them if you can. Put the risk visibly on yourself — the lower their perceived risk, the easier yes becomes.',
       responses:[
         {emoji:'🏆',title:'Okay let\'s try it',sub:'CLOSED',type:'pos',next:'outcome_win'},
@@ -560,7 +560,7 @@ function buildScript(ind) {
     },
     obj_social_proof:{
       id:'obj_social_proof', stage:'Objection', progress:90, title:'🚧 Wants Social Proof',
-      text:'"Completely fair — I\'ll connect you with a client in a similar trade. Give me until [tomorrow/end of week] to set that up and I\'ll call you back with a name and number directly. Sound good?"',
+      text:'"Fair. I\'ll get you a name and number from someone in a similar trade. Give me till [tomorrow] and I\'ll call you back with it."',
       tip:'If you don\'t have clients yet, be honest: "We\'re early stage — that\'s exactly why pricing is where it is right now." Transparency at this stage builds more trust than any case study.',
       responses:[
         {emoji:'✅',title:'Yeah that works',sub:'Callback with social proof booked',type:'pos',next:'callback_set'},
@@ -569,7 +569,7 @@ function buildScript(ind) {
     },
     obj_gatekeeper:{
       id:'obj_gatekeeper', stage:'Objection', progress:88, title:'🚧 Need to Ask Partner',
-      text:'"That makes total sense — you\'re running it together, that\'s the right call. When\'s a time where I can get you both on a quick call? Takes 10 minutes, I\'ll walk you through everything and you can both ask anything you want."',
+      text:'"Makes sense. When can I get you both on a 10-minute call? Give me a day and time."',
       tip:'Don\'t fight it — book a joint call with both decision makers. Get a SPECIFIC day and time. "Sometime next week" doesn\'t happen. "Thursday at 2pm" does.',
       responses:[
         {emoji:'📅',title:'We can do [day] at [time]',sub:'Joint callback booked — both decision makers',type:'pos',next:'callback_set'},
@@ -578,7 +578,7 @@ function buildScript(ind) {
     },
     voicemail:{
       id:'voicemail', stage:'Voicemail', progress:5, title:'📱 Leave a Voicemail',
-      text:'"Hey — this is <span class="hl-name">REP_NAME</span>, I help '+d.name.toLowerCase()+' stop missing calls when they\'re busy on a job. I\'ll shoot you a text too — if it sounds interesting, just text me back. No pressure."',
+      text:'"Hey — <span class="hl-name">REP_NAME</span> here. I help '+d.name.toLowerCase()+' stop losing jobs to missed calls. Texting you too — if it sounds interesting, just reply."',
       tip:'Under 20 seconds. Text them immediately after with the same message shorter. Texts get way more responses than voicemails — the voicemail just primes them to recognize your number.',
       responses:[
         {emoji:'➡️',title:'Left voicemail — on to the next',sub:'Log it and dial',type:'neu',next:'outcome_loss'}
@@ -586,7 +586,7 @@ function buildScript(ind) {
     },
     callback_set:{
       id:'callback_set', stage:'Callback', progress:96, title:'📅 Lock In the Callback',
-      text:'"Perfect — so I\'ve got you down for <span class="hl">[DAY]</span> at <span class="hl">[TIME]</span>. I\'ll call from this same number. Before I let you go — what\'s the best number to reach you at, and can I send a quick text reminder the morning of?"',
+      text:'"Got it — <span class="hl">[DAY]</span> at <span class="hl">[TIME]</span>, I\'ll call from this number. Best number for you? And want a reminder text the morning of?"',
       tip:'Always confirm the number. Always offer the reminder text. Send it the evening before AND the morning of. Callbacks with reminders convert at 3x the rate of those without.',
       responses:[
         {emoji:'📅',title:'Callback confirmed',sub:'Log it — dial the next one',type:'pos',next:'outcome_cb'}
