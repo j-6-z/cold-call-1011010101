@@ -7,173 +7,256 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400&family=Barlow+Condensed:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #080810;
-  --surface: #0e0e1a;
-  --card: #12121e;
-  --border: #1f1f35;
-  --border2: #2a2a45;
+  --bg: #07070f;
+  --surface: #0d0d1c;
+  --card: #111122;
+  --border: #222240;
+  --border2: #2e2e55;
   --accent: #00d4ff;
-  --accent-dim: rgba(0,212,255,0.07);
-  --accent-glow: rgba(0,212,255,0.18);
-  --purple: #8b5cf6;
+  --accent-dim: rgba(0,212,255,0.09);
+  --accent-glow: rgba(0,212,255,0.2);
+  --purple: #a78bfa;
   --green: #00ff88;
-  --green-dim: rgba(0,255,136,0.07);
+  --green-dim: rgba(0,255,136,0.09);
   --red: #ff4060;
-  --red-dim: rgba(255,64,96,0.07);
-  --yellow: #ffcc00;
-  --yellow-dim: rgba(255,204,0,0.07);
-  --text: #dde0f0;
-  --text2: #8888aa;
-  --text3: #44445a;
-  --radius: 10px;
+  --red-dim: rgba(255,64,96,0.09);
+  --yellow: #fbbf24;
+  --yellow-dim: rgba(251,191,36,0.09);
+  --text: #f0f2ff;
+  --text2: #a0a8cc;
+  --text3: #555580;
+  --radius: 12px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;min-height:100vh;line-height:1.5}
-body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.04) 2px,rgba(0,0,0,0.04) 4px);pointer-events:none;z-index:9999}
-body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.02) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0}
+body{background:var(--bg);color:var(--text);font-family:'Barlow',sans-serif;min-height:100vh;line-height:1.6;font-size:15px}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,0.018) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.018) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0}
 
 /* SHELL */
 .shell{position:relative;z-index:1;display:flex;flex-direction:column;min-height:100vh}
 
 /* TOPBAR */
-.topbar{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;border-bottom:1px solid var(--border);background:rgba(8,8,16,0.92);backdrop-filter:blur(14px);position:sticky;top:0;z-index:100;gap:16px}
-.logo-mark{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:17px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);flex-shrink:0}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 28px;border-bottom:1px solid var(--border);background:rgba(7,7,15,0.95);backdrop-filter:blur(14px);position:sticky;top:0;z-index:100;gap:16px}
+.logo-mark{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:19px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);flex-shrink:0}
 .logo-mark span{color:var(--text3);font-weight:500}
-.topbar-status{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);letter-spacing:0.1em;flex:1;text-align:center}
-.topbar-inputs{display:flex;align-items:center;gap:8px;flex-shrink:0}
-.tb-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.12em;white-space:nowrap}
-.tb-input{background:var(--card);border:1px solid var(--border2);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 10px;border-radius:6px;outline:none;transition:border-color 0.2s,box-shadow 0.2s}
+.topbar-status{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text3);letter-spacing:0.08em;flex:1;text-align:center}
+.topbar-inputs{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.tb-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;white-space:nowrap}
+.tb-input{background:var(--surface);border:1px solid var(--border2);color:var(--text);font-family:'Barlow',sans-serif;font-size:13px;padding:7px 12px;border-radius:7px;outline:none;transition:border-color 0.2s,box-shadow 0.2s}
 .tb-input:focus{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-glow)}
-#callerName{width:120px}
-#callerCity{width:120px}
+#callerName{width:130px}
+#callerCity{width:130px}
+
+/* NAV TABS */
+.nav-tabs{display:flex;align-items:center;gap:2px;padding:0 28px;border-bottom:1px solid var(--border);background:rgba(7,7,15,0.8);backdrop-filter:blur(10px)}
+.nav-tab{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:12px 20px;cursor:pointer;border-bottom:2px solid transparent;color:var(--text3);transition:all 0.15s;background:none;border-top:none;border-left:none;border-right:none;margin-bottom:-1px}
+.nav-tab:hover{color:var(--text2)}
+.nav-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
 
 /* MAIN GRID */
-.main{flex:1;display:grid;grid-template-columns:210px 1fr 230px;min-height:0}
+.main{flex:1;display:grid;grid-template-columns:220px 1fr 240px;min-height:0}
 
 /* LEFT SIDEBAR */
-.sidebar-left{border-right:1px solid var(--border);padding:20px 14px;display:flex;flex-direction:column;gap:4px;overflow-y:auto;max-height:calc(100vh - 53px)}
-.sl-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text3);padding:0 8px;margin:14px 0 6px}
+.sidebar-left{border-right:1px solid var(--border);padding:20px 14px;display:flex;flex-direction:column;gap:3px;overflow-y:auto;max-height:calc(100vh - 96px)}
+.sl-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text3);padding:0 10px;margin:16px 0 7px}
 .sl-label:first-child{margin-top:0}
-.ind-btn{display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:8px;cursor:pointer;border:1px solid transparent;background:transparent;color:var(--text2);font-family:'Barlow',sans-serif;font-size:13px;font-weight:600;text-align:left;width:100%;transition:all 0.14s}
+.ind-btn{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:9px;cursor:pointer;border:1px solid transparent;background:transparent;color:var(--text2);font-family:'Barlow',sans-serif;font-size:14px;font-weight:600;text-align:left;width:100%;transition:all 0.14s}
 .ind-btn:hover{background:var(--card);color:var(--text);border-color:var(--border)}
-.ind-btn.active{background:var(--accent-dim);color:var(--accent);border-color:rgba(0,212,255,0.22)}
-.ind-icon{font-size:14px;flex-shrink:0}
+.ind-btn.active{background:var(--accent-dim);color:var(--accent);border-color:rgba(0,212,255,0.3)}
+.ind-icon{font-size:15px;flex-shrink:0}
 .spacer{flex:1}
 
 /* CENTER */
-.center{padding:24px 28px;overflow-y:auto;max-height:calc(100vh - 53px)}
+.center{padding:28px 32px;overflow-y:auto;max-height:calc(100vh - 96px)}
 
 /* SELECT SCREEN */
 .select-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:62vh;text-align:center;animation:fadeUp 0.4s ease}
-.select-screen h1{font-family:'Barlow Condensed',sans-serif;font-size:52px;font-weight:900;text-transform:uppercase;letter-spacing:0.04em;line-height:1;margin-bottom:10px}
+.select-screen h1{font-family:'Barlow Condensed',sans-serif;font-size:56px;font-weight:900;text-transform:uppercase;letter-spacing:0.04em;line-height:1;margin-bottom:12px}
 .select-screen h1 span{color:var(--accent)}
-.select-screen p{font-size:14px;color:var(--text2);margin-bottom:36px;max-width:420px;line-height:1.7}
-.ind-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;width:100%;max-width:700px}
-.ind-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 12px;cursor:pointer;transition:all 0.17s;text-align:center}
-.ind-card:hover{border-color:var(--accent);background:var(--accent-dim);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,212,255,0.1)}
-.ind-card .ic-icon{font-size:26px;margin-bottom:7px}
-.ind-card .ic-name{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text)}
+.select-screen p{font-size:15px;color:var(--text2);margin-bottom:36px;max-width:440px;line-height:1.7}
+.ind-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;width:100%;max-width:720px}
+.ind-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px 14px;cursor:pointer;transition:all 0.17s;text-align:center}
+.ind-card:hover{border-color:var(--accent);background:var(--accent-dim);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,212,255,0.12)}
+.ind-card .ic-icon{font-size:28px;margin-bottom:8px}
+.ind-card .ic-name{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--text)}
 
 /* PROGRESS */
-.prog-wrap{margin-bottom:22px}
-.prog-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
-.prog-stage{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent)}
-.prog-pct{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3)}
-.prog-track{height:3px;background:var(--border);border-radius:2px;overflow:hidden}
-.prog-fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--accent));border-radius:2px;transition:width 0.5s cubic-bezier(0.4,0,0.2,1);box-shadow:0 0 8px var(--accent-glow)}
+.prog-wrap{margin-bottom:24px}
+.prog-meta{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}
+.prog-stage{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent)}
+.prog-pct{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text3)}
+.prog-track{height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--accent));border-radius:2px;transition:width 0.5s cubic-bezier(0.4,0,0.2,1);box-shadow:0 0 10px var(--accent-glow)}
 
 /* SCRIPT BLOCK */
 .script-block{animation:fadeUp 0.22s ease}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.script-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px 26px 22px;margin-bottom:18px;position:relative;overflow:hidden}
-.script-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--purple),var(--accent))}
-.card-eyebrow{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text3);margin-bottom:13px}
-.script-text{font-size:17px;font-weight:400;line-height:1.82;color:var(--text)}
+.script-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:28px 28px 24px;margin-bottom:20px;position:relative;overflow:hidden}
+.script-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--purple),var(--accent))}
+.card-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text3);margin-bottom:14px}
+.script-text{font-size:19px;font-weight:400;line-height:1.85;color:var(--text)}
 .hl{color:var(--accent);font-weight:700}
 .hl-name{color:var(--yellow);font-weight:700;font-style:italic}
 .hl-price{color:var(--green);font-weight:700}
 .hl-stat{color:var(--yellow);font-weight:600}
 
 /* STAT CALLOUT */
-.stat-callout{margin-top:16px;padding:13px 16px;background:rgba(0,212,255,0.04);border:1px solid rgba(0,212,255,0.12);border-radius:8px;display:flex;gap:10px;align-items:flex-start}
-.stat-callout-icon{font-size:13px;flex-shrink:0;margin-top:1px}
-.stat-callout-text{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);line-height:1.65}
+.stat-callout{margin-top:18px;padding:14px 18px;background:rgba(0,212,255,0.05);border:1px solid rgba(0,212,255,0.18);border-radius:10px;display:flex;gap:12px;align-items:flex-start}
+.stat-callout-icon{font-size:15px;flex-shrink:0;margin-top:2px}
+.stat-callout-text{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2);line-height:1.7}
 .stat-callout-text strong{color:var(--accent)}
 
 /* TIP */
-.tip-card{background:rgba(139,92,246,0.05);border:1px solid rgba(139,92,246,0.18);border-radius:8px;padding:13px 16px;margin-top:14px;display:flex;gap:10px;align-items:flex-start}
-.tip-icon{font-size:13px;flex-shrink:0;margin-top:1px}
-.tip-text{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);line-height:1.65}
+.tip-card{background:rgba(167,139,250,0.06);border:1px solid rgba(167,139,250,0.22);border-radius:10px;padding:14px 18px;margin-top:16px;display:flex;gap:12px;align-items:flex-start}
+.tip-icon{font-size:15px;flex-shrink:0;margin-top:2px}
+.tip-text{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2);line-height:1.7}
 .tip-text strong{color:var(--purple)}
 
 /* AFTER HOURS BOX */
-.ah-box{margin-top:14px;padding:11px 15px;background:rgba(255,64,96,0.04);border:1px solid rgba(255,64,96,0.14);border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text2);line-height:1.6}
-.ah-box strong{color:var(--red);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;display:block;margin-bottom:4px}
+.ah-box{margin-top:16px;padding:12px 16px;background:rgba(255,64,96,0.05);border:1px solid rgba(255,64,96,0.2);border-radius:10px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2);line-height:1.6}
+.ah-box strong{color:var(--red);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;display:block;margin-bottom:5px}
 
 /* RESPONSES */
-.resp-section{margin-bottom:18px}
-.resp-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--text3);margin-bottom:9px}
-.resp-grid{display:flex;flex-direction:column;gap:7px}
-.resp-btn{display:flex;align-items:center;gap:13px;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:12px 15px;cursor:pointer;text-align:left;width:100%;font-family:'Barlow',sans-serif;transition:all 0.14s ease;position:relative;overflow:hidden}
+.resp-section{margin-bottom:20px}
+.resp-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text3);margin-bottom:10px}
+.resp-grid{display:flex;flex-direction:column;gap:8px}
+.resp-btn{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 18px;cursor:pointer;text-align:left;width:100%;font-family:'Barlow',sans-serif;transition:all 0.14s ease;position:relative;overflow:hidden}
 .resp-btn::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;transition:width 0.18s ease}
 .resp-btn.pos{--col:var(--green);--col-dim:var(--green-dim)}
 .resp-btn.neg{--col:var(--red);--col-dim:var(--red-dim)}
 .resp-btn.neu{--col:var(--yellow);--col-dim:var(--yellow-dim)}
-.resp-btn:hover{border-color:var(--col);background:var(--col-dim);transform:translateX(3px)}
-.resp-btn:hover::before{width:3px;background:var(--col)}
-.resp-emoji{font-size:17px;flex-shrink:0}
+.resp-btn:hover{border-color:var(--col);background:var(--col-dim);transform:translateX(4px)}
+.resp-btn:hover::before{width:4px;background:var(--col)}
+.resp-emoji{font-size:20px;flex-shrink:0}
 .resp-body{flex:1;min-width:0}
-.resp-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:2px}
-.resp-sub{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3)}
-.resp-arrow{font-size:13px;color:var(--text3);transition:color 0.14s,transform 0.14s}
-.resp-btn:hover .resp-arrow{color:var(--col);transform:translateX(3px)}
+.resp-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:3px}
+.resp-sub{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text3)}
+.resp-arrow{font-size:16px;color:var(--text3);transition:color 0.14s,transform 0.14s}
+.resp-btn:hover .resp-arrow{color:var(--col);transform:translateX(4px)}
 
 /* NAV */
-.nav-strip{display:flex;gap:8px;flex-wrap:wrap}
-.nav-btn{padding:8px 16px;border-radius:7px;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;border:1px solid var(--border2);background:var(--card);color:var(--text2);transition:all 0.14s}
+.nav-strip{display:flex;gap:10px;flex-wrap:wrap}
+.nav-btn{padding:9px 18px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;border:1px solid var(--border2);background:var(--card);color:var(--text2);transition:all 0.14s}
 .nav-btn:hover{color:var(--text);border-color:var(--text3)}
 
 /* OUTCOME */
 .outcome-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:50vh;text-align:center;animation:fadeUp 0.3s ease}
-.outcome-emoji{font-size:72px;margin-bottom:18px;line-height:1}
-.outcome-title{font-family:'Barlow Condensed',sans-serif;font-size:52px;font-weight:900;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:10px;line-height:1}
+.outcome-emoji{font-size:76px;margin-bottom:20px;line-height:1}
+.outcome-title{font-family:'Barlow Condensed',sans-serif;font-size:56px;font-weight:900;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:12px;line-height:1}
 .outcome-title.win{color:var(--green)}.outcome-title.loss{color:var(--red)}.outcome-title.cb{color:var(--yellow)}
-.outcome-sub{font-size:13px;color:var(--text2);max-width:400px;line-height:1.75;margin-bottom:26px;font-family:'JetBrains Mono',monospace}
-.path-log{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;margin-bottom:22px;text-align:left;width:100%;max-width:440px}
-.path-log h4{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text3);margin-bottom:11px}
-.path-entry{display:flex;align-items:center;gap:9px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);padding:5px 0;border-bottom:1px solid var(--border)}
+.outcome-sub{font-size:14px;color:var(--text2);max-width:420px;line-height:1.8;margin-bottom:28px}
+.path-log{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;margin-bottom:24px;text-align:left;width:100%;max-width:460px}
+.path-log h4{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text3);margin-bottom:12px}
+.path-entry{display:flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2);padding:6px 0;border-bottom:1px solid var(--border)}
 .path-entry:last-child{border-bottom:none}
-.path-dot{color:var(--accent);font-size:8px}
-.btn-primary{padding:12px 26px;border-radius:8px;font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;border:none;background:linear-gradient(135deg,var(--purple),#6d28d9);color:#fff;transition:opacity 0.14s,transform 0.14s;box-shadow:0 4px 20px rgba(139,92,246,0.28)}
+.path-dot{color:var(--accent);font-size:9px}
+.btn-primary{padding:13px 28px;border-radius:9px;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;border:none;background:linear-gradient(135deg,var(--purple),#6d28d9);color:#fff;transition:opacity 0.14s,transform 0.14s;box-shadow:0 4px 24px rgba(139,92,246,0.3)}
 .btn-primary:hover{opacity:0.87;transform:translateY(-1px)}
 
 /* RIGHT SIDEBAR */
-.sidebar-right{border-left:1px solid var(--border);padding:18px 14px;overflow-y:auto;max-height:calc(100vh - 53px)}
-.sr-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--text3);margin:14px 0 8px}
+.sidebar-right{border-left:1px solid var(--border);padding:20px 16px;overflow-y:auto;max-height:calc(100vh - 96px)}
+.sr-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--text3);margin:16px 0 9px}
 .sr-label:first-child{margin-top:0}
-.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:4px}
-.stat-box{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:11px 8px;text-align:center}
-.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:28px;font-weight:900;line-height:1;margin-bottom:2px}
+.stat-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:5px}
+.stat-box{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 10px;text-align:center}
+.stat-num{font-family:'Barlow Condensed',sans-serif;font-size:32px;font-weight:900;line-height:1;margin-bottom:3px}
 .stat-num.green{color:var(--green)}.stat-num.red{color:var(--red)}.stat-num.yellow{color:var(--yellow)}.stat-num.accent{color:var(--accent)}
-.stat-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em}
-.log-entries{display:flex;flex-direction:column;gap:5px}
-.log-pill{display:flex;align-items:center;gap:7px;background:var(--card);border:1px solid var(--border);border-radius:7px;padding:7px 9px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text2);flex-wrap:wrap}
-.log-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.log-dot.win{background:var(--green);box-shadow:0 0 5px var(--green)}.log-dot.loss{background:var(--red)}.log-dot.cb{background:var(--yellow)}
-.log-time{margin-left:auto;color:var(--text3);font-size:9px}
-.log-ind{font-size:9px;color:var(--text3);padding:1px 5px;background:var(--surface);border-radius:3px}
-.empty-log{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);text-align:center;padding:18px 8px;line-height:1.75}
+.stat-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em}
+.log-entries{display:flex;flex-direction:column;gap:6px}
+.log-pill{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text2);flex-wrap:wrap}
+.log-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.log-dot.win{background:var(--green);box-shadow:0 0 6px var(--green)}.log-dot.loss{background:var(--red)}.log-dot.cb{background:var(--yellow)}
+.log-time{margin-left:auto;color:var(--text3);font-size:10px}
+.log-ind{font-size:10px;color:var(--text3);padding:2px 6px;background:var(--surface);border-radius:4px}
+.empty-log{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--text3);text-align:center;padding:20px 8px;line-height:1.8}
 .obj-ref{margin-top:4px}
-.obj-ref-item{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);padding:6px 6px;border-bottom:1px solid var(--border);cursor:pointer;transition:color 0.13s;line-height:1.5}
+.obj-ref-item{font-family:'Barlow',sans-serif;font-size:12px;font-weight:600;color:var(--text2);padding:8px 8px;border-bottom:1px solid var(--border);cursor:pointer;transition:color 0.13s;line-height:1.5}
 .obj-ref-item:hover{color:var(--accent)}.obj-ref-item:last-child{border-bottom:none}
-.conv-rate{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;margin-top:4px;text-align:center}
-.conv-pct{font-family:'Barlow Condensed',sans-serif;font-size:36px;font-weight:900;color:var(--purple)}
-.conv-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-top:2px}
+.conv-rate{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;margin-top:4px;text-align:center}
+.conv-pct{font-family:'Barlow Condensed',sans-serif;font-size:40px;font-weight:900;color:var(--purple)}
+.conv-lbl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.1em;margin-top:3px}
 
-::-webkit-scrollbar{width:4px;height:4px}
+/* ══════════════════════════════════
+   CHECKLIST SECTION
+══════════════════════════════════ */
+.checklist-screen{animation:fadeUp 0.3s ease;max-width:820px;margin:0 auto}
+.checklist-header{margin-bottom:28px}
+.checklist-header h2{font-family:'Barlow Condensed',sans-serif;font-size:42px;font-weight:900;text-transform:uppercase;letter-spacing:0.05em;line-height:1;margin-bottom:8px}
+.checklist-header h2 span{color:var(--accent)}
+.checklist-header p{font-size:14px;color:var(--text2);line-height:1.7}
+.checklist-date{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+.checklist-date-label{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text2)}
+.checklist-reset{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:7px 16px;border:1px solid var(--border2);border-radius:7px;background:var(--card);color:var(--text3);cursor:pointer;transition:all 0.14s}
+.checklist-reset:hover{color:var(--red);border-color:var(--red)}
+.checklist-progress-bar{margin-bottom:30px;padding:16px 20px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius)}
+.cp-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.cp-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text)}
+.cp-count{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent)}
+.cp-bar{height:5px;background:var(--border);border-radius:3px;overflow:hidden}
+.cp-fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--accent));border-radius:3px;transition:width 0.4s cubic-bezier(0.4,0,0.2,1);box-shadow:0 0 10px var(--accent-glow)}
+.checklist-section{margin-bottom:28px}
+.cs-title{font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--text3);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.cs-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.checklist-items{display:flex;flex-direction:column;gap:8px}
+.cl-item{display:flex;align-items:flex-start;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:11px;padding:16px 18px;cursor:pointer;transition:all 0.15s;user-select:none}
+.cl-item:hover{border-color:var(--border2);background:var(--surface)}
+.cl-item.done{background:rgba(0,255,136,0.04);border-color:rgba(0,255,136,0.22)}
+.cl-check{width:22px;height:22px;border:2px solid var(--border2);border-radius:6px;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;transition:all 0.15s;font-size:12px}
+.cl-item.done .cl-check{background:var(--green);border-color:var(--green);color:#000;font-weight:700}
+.cl-content{flex:1;min-width:0}
+.cl-label{font-size:15px;font-weight:700;color:var(--text);transition:color 0.15s;line-height:1.4;margin-bottom:5px}
+.cl-item.done .cl-label{color:var(--text3);text-decoration:line-through}
+.cl-note{font-size:13px;color:var(--text2);line-height:1.65}
+.cl-item.done .cl-note{opacity:0.45}
+.cl-tag{margin-left:8px;flex-shrink:0;font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.08em;padding:3px 10px;border-radius:5px;text-transform:uppercase;white-space:nowrap}
+.cl-tag.tag-prep{background:rgba(0,212,255,0.1);color:var(--accent);border:1px solid rgba(0,212,255,0.2)}
+.cl-tag.tag-action{background:rgba(167,139,250,0.1);color:var(--purple);border:1px solid rgba(167,139,250,0.2)}
+.cl-tag.tag-follow{background:rgba(251,191,36,0.1);color:var(--yellow);border:1px solid rgba(251,191,36,0.2)}
+.cl-tag.tag-end{background:rgba(255,64,96,0.1);color:var(--red);border:1px solid rgba(255,64,96,0.2)}
+
+/* ══════════════════════════════════
+   FAQ SECTION
+══════════════════════════════════ */
+.faq-screen{animation:fadeUp 0.3s ease;max-width:820px;margin:0 auto}
+.faq-header{margin-bottom:28px}
+.faq-header h2{font-family:'Barlow Condensed',sans-serif;font-size:42px;font-weight:900;text-transform:uppercase;letter-spacing:0.05em;line-height:1;margin-bottom:8px}
+.faq-header h2 span{color:var(--accent)}
+.faq-header p{font-size:14px;color:var(--text2);line-height:1.7}
+.faq-cats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.faq-cat-btn{font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:8px 16px;border-radius:7px;border:1px solid var(--border2);background:var(--card);color:var(--text3);cursor:pointer;transition:all 0.14s}
+.faq-cat-btn:hover{color:var(--text2);border-color:var(--text3)}
+.faq-cat-btn.active{background:var(--accent-dim);color:var(--accent);border-color:rgba(0,212,255,0.3)}
+.faq-list{display:flex;flex-direction:column;gap:10px}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color 0.15s}
+.faq-item:hover{border-color:var(--border2)}
+.faq-item.open{border-color:rgba(0,212,255,0.28)}
+.faq-q{display:flex;align-items:center;gap:14px;padding:18px 20px;cursor:pointer;user-select:none}
+.faq-q-icon{font-size:18px;flex-shrink:0}
+.faq-q-text{flex:1;font-size:15px;font-weight:700;color:var(--text);line-height:1.4}
+.faq-item.open .faq-q-text{color:var(--accent)}
+.faq-q-cat{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.08em;padding:3px 10px;border-radius:5px;text-transform:uppercase;flex-shrink:0}
+.faq-q-cat.cat-product{background:rgba(0,212,255,0.1);color:var(--accent);border:1px solid rgba(0,212,255,0.2)}
+.faq-q-cat.cat-sales{background:rgba(167,139,250,0.1);color:var(--purple);border:1px solid rgba(167,139,250,0.2)}
+.faq-q-cat.cat-tech{background:rgba(0,255,136,0.1);color:var(--green);border:1px solid rgba(0,255,136,0.2)}
+.faq-q-cat.cat-pricing{background:rgba(251,191,36,0.1);color:var(--yellow);border:1px solid rgba(251,191,36,0.2)}
+.faq-q-cat.cat-objection{background:rgba(255,64,96,0.1);color:var(--red);border:1px solid rgba(255,64,96,0.2)}
+.faq-chevron{font-size:18px;color:var(--text3);transition:transform 0.2s;font-weight:700}
+.faq-item.open .faq-chevron{transform:rotate(90deg);color:var(--accent)}
+.faq-a{display:none;padding:0 20px 20px 52px;animation:fadeUp 0.2s ease}
+.faq-item.open .faq-a{display:block}
+.faq-a-text{font-size:14px;color:var(--text2);line-height:1.9;margin-bottom:14px}
+.faq-a-text strong{color:var(--text);font-weight:700}
+.faq-script-box{background:var(--surface);border:1px solid var(--border2);border-radius:10px;padding:16px 18px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--text);line-height:1.8;position:relative;margin-top:4px}
+.faq-script-box::before{content:'SAY THIS';position:absolute;top:-1px;left:14px;background:var(--purple);color:#fff;font-size:9px;font-weight:700;letter-spacing:0.14em;padding:2px 8px;border-radius:0 0 5px 5px}
+.faq-bullets{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.faq-bullet{display:flex;gap:10px;font-size:13px;color:var(--text2);line-height:1.65}
+.faq-bullet-dot{color:var(--accent);flex-shrink:0;margin-top:2px;font-weight:700}
+.faq-warn{margin-top:12px;padding:12px 16px;background:rgba(255,64,96,0.06);border:1px solid rgba(255,64,96,0.22);border-radius:9px;font-size:13px;color:var(--red);line-height:1.7}
+.faq-tip{margin-top:12px;padding:12px 16px;background:rgba(167,139,250,0.06);border:1px solid rgba(167,139,250,0.22);border-radius:9px;font-size:13px;color:var(--purple);line-height:1.7}
+
+::-webkit-scrollbar{width:5px;height:5px}
 ::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
 </style>
 </head>
 <body>
@@ -187,14 +270,21 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
     <span class="tb-label">Rep</span>
     <input class="tb-input" id="callerName" type="text" placeholder="Your name" />
     <span class="tb-label">City</span>
-    <input class="tb-input" id="callerCity" type="text" placeholder="e.g. Dallas" />
+    <input class="tb-input" id="callerCity" type="text" placeholder="e.g. Edmonton" />
   </div>
+</div>
+
+<!-- NAV TABS -->
+<div class="nav-tabs">
+  <button class="nav-tab active" data-tab="dialer">📞 Dialer</button>
+  <button class="nav-tab" data-tab="checklist">✅ Daily Checklist</button>
+  <button class="nav-tab" data-tab="faq">💬 Cold Call FAQ</button>
 </div>
 
 <div class="main">
 
   <!-- LEFT SIDEBAR -->
-  <div class="sidebar-left">
+  <div class="sidebar-left" id="sidebarLeft">
     <div class="sl-label">Industries</div>
     <button class="ind-btn" data-industry="plumber"><span class="ind-icon">🔧</span> Plumbers</button>
     <button class="ind-btn" data-industry="electrician"><span class="ind-icon">⚡</span> Electricians</button>
@@ -222,7 +312,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
   </div>
 
   <!-- RIGHT SIDEBAR -->
-  <div class="sidebar-right">
+  <div class="sidebar-right" id="sidebarRight">
     <div class="sr-label">Session Stats</div>
     <div class="stat-row">
       <div class="stat-box"><div class="stat-num accent" id="statTotal">0</div><div class="stat-label">Calls</div></div>
@@ -263,7 +353,7 @@ body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(
 
 <script>
 // ═══════════════════════════════════════════
-// INDUSTRY DATA — NORTH AMERICA WIDE
+// INDUSTRY DATA
 // ═══════════════════════════════════════════
 var INDUSTRIES = {
   plumber: {
@@ -339,6 +429,176 @@ var INDUSTRIES = {
 };
 
 // ═══════════════════════════════════════════
+// CHECKLIST DATA
+// ═══════════════════════════════════════════
+var CHECKLIST = [
+  // KNOW THE PRODUCT
+  {id:'c1', section:'Know The Product', label:'Know what JayIsaac AI actually sells', note:'An AI receptionist that answers calls 24/7, books appointments, and captures leads for trades businesses — built on Retell AI, delivered through a forwarding number. No app for the client to install.', tag:'prep'},
+  {id:'c2', section:'Know The Product', label:'Know the 3 pricing tiers by heart', note:'Starter $297/mo — Growth $497/mo — Pro $797/mo. Always lead with Starter. Only go higher if they ask or volunteer high volume / multiple locations.', tag:'prep'},
+  {id:'c3', section:'Know The Product', label:'Know the setup timeline', note:'48 hours from payment to live. Client fills a short onboarding form, we configure the agent, set up the forwarding number, run test calls. Zero tech work on their end.', tag:'prep'},
+  {id:'c4', section:'Know The Product', label:'Know what Nico is', note:'Nico is our demo agent — trained on a fictional company called Apex Plumbing & Heating. It\'s what prospects hear on the live demo call. It\'s not their finished product — it\'s a taste of the tech.', tag:'prep'},
+  {id:'c5', section:'Know The Product', label:'Know the value prop in one sentence', note:'"We help trades businesses stop losing jobs to missed calls — AI receptionist, answers 24/7, books appointments, catches every lead while you\'re on a job." That\'s it. Memorize it.', tag:'prep'},
+
+  // KNOW THE PITCH
+  {id:'c6', section:'Know The Pitch', label:'Know why we say "cold call" upfront', note:'It\'s a pattern interrupt. It kills the defensive posture, builds credibility, and separates you from every other sales call they\'ve gotten. Do not try to sneak past it.', tag:'action'},
+  {id:'c7', section:'Know The Pitch', label:'Know the demo is the close — not the script', note:'The script gets them to the demo. The demo closes the deal. If you skip the demo, you\'re closing with words instead of proof. Always push for the merge or the text.', tag:'action'},
+  {id:'c8', section:'Know The Pitch', label:'Know the silence rule', note:'After "Want to get set up today?" — stop talking. The first person to speak after the close either buys or objects. Do not fill the silence. Even 10 seconds of quiet is fine.', tag:'action'},
+  {id:'c9', section:'Know The Pitch', label:'Know never to pitch on price before the demo', note:'If they ask price early, say $297, then immediately redirect: "That number means nothing until you hear it — give me 60 seconds." Price before demo kills deals.', tag:'action'},
+  {id:'c10', section:'Know The Pitch', label:'Know what "not interested" actually means', note:'It almost never means what it says. It means one specific thing they haven\'t said yet — usually bad timing, price, or doubt. Your job is to diagnose it, not accept it.', tag:'action'},
+
+  // KNOW THE OBJECTIONS
+  {id:'c11', section:'Know The Objections', label:'Already has a receptionist', note:'"Good — what about after hours, weekends, when they\'re sick?" Don\'t fight the receptionist. Attack the gaps. Every business has them.', tag:'follow'},
+  {id:'c12', section:'Know The Objections', label:'Too expensive / $297 is too much', note:'Reframe with ROI: "If you miss 2 jobs a month at $600 each — that\'s $1,200 gone. This is $297." Never drop the price. Dropping signals the product isn\'t worth what you said.', tag:'follow'},
+  {id:'c13', section:'Know The Objections', label:'Sounds too robotic', note:'"That\'s the demo on a generic setup. When it\'s trained on your business, customers think it\'s a real person — we\'ve had owners get compliments on their receptionist."', tag:'follow'},
+  {id:'c14', section:'Know The Objections', label:'Need to think about it', note:'"What\'s holding you back — the price or not sure it\'ll work?" Force them to name the real objection. Vague stalls are just unspoken objections.', tag:'follow'},
+  {id:'c15', section:'Know The Objections', label:'Just send me info / email me', note:'"I\'ll send it — but most people don\'t get it until they hear it. Let me text you the demo number with the link — 60 seconds and you\'ll have the full picture." Always bundle the demo with the info.', tag:'follow'},
+
+  // KNOW THE COMPANY
+  {id:'c16', section:'Know The Company', label:'Know who runs JayIsaac AI', note:'Founded by Jay. Cassandra G. is Sales Manager & Client Relations. Julian Reville is Sales Rep. If a prospect becomes a client, Cassandra handles the relationship from there.', tag:'end'},
+  {id:'c17', section:'Know The Company', label:'Know where we operate', note:'We serve trades businesses across North America — primary focus is Edmonton and Saskatoon right now. Don\'t say we\'re limited to those cities on a call — say "we work with trades across Canada and the US."', tag:'end'},
+  {id:'c18', section:'Know The Company', label:'Know the website and what\'s on it', note:'jayisaacai.com — has pricing, features, FAQ, and the team. If a prospect says "send me info," the site is what you\'re sending. Know what\'s on it before you send it.', tag:'end'}
+];
+
+// ═══════════════════════════════════════════
+// FAQ DATA
+// ═══════════════════════════════════════════
+var FAQ = [
+  // COLD CALL Q&A — what prospects actually ask
+  {
+    id:'f1', cat:'prospect', catLabel:'Prospect Q&A', catCls:'cat-product', icon:'🤖',
+    q:'Is this a real person or a bot?',
+    a:'It\'s a live AI — not a recording, not a phone tree, not a chatbot. It holds a real conversation, listens to what the caller says, responds naturally, and books appointments. Most callers can\'t tell the difference. When it\'s trained on a client\'s specific business, it answers using their business name, their services, and their booking process.',
+    script:'"It\'s a live AI — not a recording. It has an actual conversation with your callers. When it\'s set up for your business, it answers with your business name and handles calls exactly how you\'d want."',
+    bullets: null, warn: null, tip:'If they push on "AI" — "Think of it like a staff member who works nights and weekends, never calls in sick, and never misses a call."'
+  },
+  {
+    id:'f2', cat:'prospect', catLabel:'Prospect Q&A', catCls:'cat-product', icon:'💰',
+    q:'How much does it cost?',
+    a:'Starter is $297/month. That covers 24/7 answering, appointment booking, and after-hours call handling. Always lead with Starter — only mention higher tiers if they ask about more features or high call volume. If they ask price before the demo, give the number and immediately redirect to the demo so the price lands with context.',
+    script:'"$297 a month. But honestly that number means nothing until you hear it — give me 60 seconds to run the demo and then you\'ll know if it makes sense for you."',
+    bullets: null, warn:'Never drop the price or offer a discount. It signals the product isn\'t worth what you said.', tip: null
+  },
+  {
+    id:'f3', cat:'prospect', catLabel:'Prospect Q&A', catCls:'cat-product', icon:'⚙️',
+    q:'How does it actually work / how do you set it up?',
+    a:'The client keeps their existing phone number. We set up a separate AI line and they forward their calls to it when they can\'t answer. Setup takes 48 hours — they fill out a short form with their business details, we configure the agent, run test calls, and they\'re live. Zero tech work on their end.',
+    script:'"You keep your number. We set up an AI line — you forward calls to it when you\'re on a job or unavailable. Takes about 2 minutes to set up the forwarding on your phone. We handle everything else."',
+    bullets: null, warn: null, tip: null
+  },
+  {
+    id:'f4', cat:'prospect', catLabel:'Prospect Q&A', catCls:'cat-product', icon:'📅',
+    q:'Does it actually book appointments or just take messages?',
+    a:'It books appointments. It asks for the caller\'s name, contact info, what they need, and their availability — then confirms the booking and notifies the owner. For clients using scheduling software like Jobber or Google Calendar, it can drop directly into their calendar. For owners without that, it sends a text summary so they can confirm in seconds.',
+    script:'"It books the appointment — asks what they need, gets their info, confirms a time. You get a text summary so you can confirm with one tap. It doesn\'t just take messages."',
+    bullets: null, warn: null, tip: null
+  },
+  {
+    id:'f5', cat:'prospect', catLabel:'Prospect Q&A', catCls:'cat-product', icon:'🌙',
+    q:'What happens on after-hours calls?',
+    a:'Same thing as business hours — it picks up, handles the call, and either books the appointment or takes a message depending on urgency. The owner can configure it so true emergencies still get forwarded to their cell. Everything else gets handled without waking them up.',
+    script:'"It answers the same way at 2am as it does at 9am. Burst pipe call at midnight — it picks up, gets the details, and notifies you. You can set it so emergencies ring through to you, everything else gets handled."',
+    bullets: null, warn: null, tip: null
+  },
+  {
+    id:'f6', cat:'prospect', catLabel:'Prospect Q&A', catCls:'cat-product', icon:'🔒',
+    q:'Is there a contract? Can I cancel?',
+    a:'Month-to-month, no contracts. Cancel with 30 days notice. No setup fee. The whole pitch is low risk — if it\'s not working in the first month, they cancel and they\'re out nothing significant.',
+    script:'"No contract — month to month. If it\'s not working in 30 days, cancel. We\'re not asking you to sign anything long-term — just try it and see."',
+    bullets: null, warn: null, tip: null
+  },
+  {
+    id:'f7', cat:'prospect', catLabel:'Prospect Q&A', catCls:'cat-product', icon:'🗣️',
+    q:'My customers expect to talk to a real person — won\'t this hurt my business?',
+    a:'This is a fear, not a fact. The alternative isn\'t "a real person" — it\'s voicemail or a missed call. Customers calling a trades business during the day are calling because they have a problem right now. An AI that picks up in 2 rings and handles their call is infinitely better than ringing out. We\'ve had clients get compliments on their "receptionist" after going live.',
+    script:'"The alternative isn\'t a real person — it\'s voicemail. Your customers aren\'t choosing between AI and a human, they\'re choosing between AI and ringing out. Most of them won\'t even know."',
+    bullets: null, warn: null, tip: null
+  },
+  {
+    id:'f8', cat:'prospect', catLabel:'Prospect Q&A', catCls:'cat-product', icon:'📞',
+    q:'What if I already have an answering service?',
+    a:'Answering services take messages. They don\'t book. They don\'t qualify leads. They cost more and do less. Ask the prospect: does your answering service book appointments, or does it just take a name and number and tell them someone will call back? That gap is where jobs are lost.',
+    script:'"Does your answering service actually book appointments, or does it take a message and say someone will call back? Because the gap between those two things is where your leads go cold."',
+    bullets: null, warn: null, tip: null
+  },
+
+  // COMPANY FAQ
+  {
+    id:'f9', cat:'company', catLabel:'Company', catCls:'cat-sales', icon:'🏢',
+    q:'What is JayIsaac AI?',
+    a:'JayIsaac AI is an AI receptionist service built specifically for small trades businesses. We build, configure, and manage AI phone agents that answer calls 24/7, book appointments, and capture leads — so trades owners never miss a job because they were on a roof or under a sink.',
+    script: null, bullets: null, warn: null, tip: null
+  },
+  {
+    id:'f10', cat:'company', catLabel:'Company', catCls:'cat-sales', icon:'🌎',
+    q:'Where do you operate? Who do you serve?',
+    a:'We serve trades businesses across Canada and the US — plumbers, electricians, HVAC, roofers, garage door, landscapers, pest control, locksmiths, general contractors, appliance repair. Primary focus right now is Edmonton and Saskatoon, but the service works anywhere in North America. On a call, don\'t limit yourself — say "trades across Canada and the US."',
+    script: null, bullets: null, warn: null, tip: null
+  },
+  {
+    id:'f11', cat:'company', catLabel:'Company', catCls:'cat-sales', icon:'👥',
+    q:'Who\'s on the team?',
+    a:'Julius is the founder. Cassandra G. is Sales Manager and handles client relations — she\'s the point of contact after a deal closes. Julian Reville is a Sales Rep. When a prospect becomes a client, Cassandra takes over the relationship. Don\'t overshare team details on a cold call unless directly asked.',
+    script: null, bullets: null, warn: null, tip: null
+  },
+  {
+    id:'f12', cat:'company', catLabel:'Company', catCls:'cat-sales', icon:'🌐',
+    q:'Where can they learn more / what\'s the website?',
+    a:'jayisaacai.com — has pricing, features breakdown, FAQ, and the team section. When a prospect says "send me info," this is what you\'re texting them. Know what\'s on the site so you\'re not sending people somewhere you can\'t speak to.',
+    script:'"I\'ll text you the site link right now — jayisaacai.com — and I\'ll send the demo number with it so you can hear it yourself."',
+    bullets: null, warn: null, tip: null
+  },
+  {
+    id:'f13', cat:'company', catLabel:'Company', catCls:'cat-sales', icon:'🔧',
+    q:'What tech does JayIsaac AI use to build the agents?',
+    a:'Built on Retell AI — an enterprise voice AI platform used by contact centers and major businesses. Calls are routed through OpenPhone. On a call with a prospect, don\'t say "Retell" — it means nothing to them. Just say "enterprise voice AI, same tech used by major contact centers."',
+    script:'"It runs on enterprise voice AI — same tech that powers contact centers for large companies. We just package it specifically for trades businesses."',
+    bullets: null, warn: null, tip: null
+  },
+
+  // SALES MINDSET
+  {
+    id:'f14', cat:'mindset', catLabel:'Mindset', catCls:'cat-tech', icon:'🧠',
+    q:'Why do we say "this is a cold call" right at the start?',
+    a:'It\'s a pattern interrupt. Every salesperson tries to disguise the pitch — saying "cold call" upfront is the one thing they don\'t expect. It signals confidence, honesty, and that your time is valuable. It drops their guard instantly. Do not skip this. Do not soften it. Just say it.',
+    script: null, bullets:['Kills the "I know what this is" defensive posture', 'Signals you\'re not like the other callers', 'Confident framing = they treat you as a peer', 'Pause hard after "Got 30 seconds?" — let them answer first'],
+    warn: null, tip: null
+  },
+  {
+    id:'f15', cat:'mindset', catLabel:'Mindset', catCls:'cat-tech', icon:'🤫',
+    q:'When do we use silence and why is it so important?',
+    a:'After every close. After "Want to get set up today?" — stop. Don\'t explain more. Don\'t fill the gap. The first person to speak after a close either buys or objects. If you fill the silence, you\'re buying time for them to talk themselves out of it. Silence is not awkward — it\'s pressure. Use it.',
+    script: null, bullets: null,
+    warn:'If you break the silence after the close, you\'ve lost your leverage. Even 15-20 seconds of quiet is completely normal in sales. Let it breathe.', tip: null
+  },
+  {
+    id:'f16', cat:'mindset', catLabel:'Mindset', catCls:'cat-tech', icon:'❌',
+    q:'How do we handle a hard "no" — when do we move on?',
+    a:'After you\'ve diagnosed the real objection and countered it once, clearly and confidently, and they still say no — move on. No guilt, no desperation, no re-pitching. Log it, thank them, and dial the next one. A no today can be a yes in 3 months if you leave on a good note. A pushy exit burns the lead forever.',
+    script:'"Totally fair — I appreciate your time. I\'ll leave you to it."',
+    bullets: null, warn: null, tip:'Hang up clean and fast after a final no. Long goodbyes signal you\'re hoping they\'ll change their mind.'
+  },
+  {
+    id:'f17', cat:'mindset', catLabel:'Mindset', catCls:'cat-tech', icon:'📊',
+    q:'What numbers should we actually expect from cold calling?',
+    a:'Cold calling is a volume game. Out of 20 dials, expect 3–6 real conversations. Out of those, expect 1–2 warm responses. One close per 40–60 dials is solid. Don\'t measure yourself on one session — measure your trend over a week. The reps who quit early mistake a bad morning for a bad product.',
+    script: null,
+    bullets:['20 dials = minimum for a real session', '3–6 conversations per 20 dials', '1 demo per 15–20 conversations', '1 close per 40–60 dials = good performance', 'Best call times: 8–9am, 11:30am–1pm, 4–5:30pm'],
+    warn: null, tip: null
+  }
+];
+
+// ═══════════════════════════════════════════
+// CHECKLIST STATE
+// ═══════════════════════════════════════════
+var checklistState = {};
+CHECKLIST.forEach(function(item) { checklistState[item.id] = false; });
+
+function getTodayKey() {
+  var d = new Date();
+  return d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate();
+}
+
+// ═══════════════════════════════════════════
 // SCRIPT BUILDER
 // ═══════════════════════════════════════════
 function buildScript(ind) {
@@ -380,7 +640,7 @@ function buildScript(ind) {
     },
     demo_merge:{
       id:'demo_merge', stage:'Merging Call', progress:55, title:'⚡ Hold + Merge — Do This Now',
-      text:'<strong style="color:var(--accent)">In Quo — right now:</strong><br><br><div style="margin-top:14px;padding:14px 18px;background:var(--surface);border:1px solid var(--border2);border-radius:8px;font-family:\'JetBrains Mono\',monospace;font-size:12px;color:var(--text);line-height:2"><span style="color:var(--accent);font-weight:700">1</span> — Tap <strong>Hold</strong> to put them on hold<br><span style="color:var(--accent);font-weight:700">2</span> — Tap the <strong>+ button</strong> top right<br><span style="color:var(--accent);font-weight:700">3</span> — Dial your <strong>Retell demo number</strong><br><span style="color:var(--accent);font-weight:700">4</span> — Wait for Nico to answer<br><span style="color:var(--accent);font-weight:700">5</span> — Tap <strong>Merge Calls</strong></div><br>All three of you are now live. Stay silent — let Nico run for 60 seconds. Drop the Retell line after.',
+      text:'<strong style="color:var(--accent)">In OpenPhone — right now:</strong><br><br><div style="margin-top:14px;padding:14px 18px;background:var(--surface);border:1px solid var(--border2);border-radius:8px;font-family:\'JetBrains Mono\',monospace;font-size:12px;color:var(--text);line-height:2"><span style="color:var(--accent);font-weight:700">1</span> — Tap <strong>Hold</strong> to put them on hold<br><span style="color:var(--accent);font-weight:700">2</span> — Tap the <strong>+ button</strong> top right<br><span style="color:var(--accent);font-weight:700">3</span> — Dial your <strong>Retell demo number</strong><br><span style="color:var(--accent);font-weight:700">4</span> — Wait for Nico to answer<br><span style="color:var(--accent);font-weight:700">5</span> — Tap <strong>Merge Calls</strong></div><br>All three of you are now live. Stay silent — let Nico run for 60 seconds. Drop the Retell line after.',
       tip:'Don\'t talk over Nico. Let the prospect interact with it naturally. After the demo ends, drop Retell and come back: "So — that\'s what your customers hear instead of voicemail. What\'d you think?"',
       responses:[
         {emoji:'✅',title:'Merged — Nico is running',sub:'Let demo run — drop Retell after 60 sec',type:'pos',next:'demo_live'},
@@ -442,8 +702,6 @@ function buildScript(ind) {
         {emoji:'👥',title:'Need to ask my partner',sub:'Gatekeeper objection',type:'neu',next:'obj_gatekeeper'}
       ]
     },
-
-    // ── OBJECTIONS ──────────────────────
     obj_no_time:{
       id:'obj_no_time', stage:'Objection', progress:12, title:'🚧 No Time',
       text:'"Fair enough. I help '+d.name.toLowerCase()+' stop losing jobs to missed calls. Morning or afternoon work better for a quick call back?"',
@@ -606,6 +864,8 @@ var currentScript = null;
 var callPath = [];
 var sessionLog = [];
 var stats = {total:0, wins:0, losses:0, cbs:0};
+var currentTab = 'dialer';
+var faqFilter = 'all';
 
 // ═══════════════════════════════════════════
 // HELPERS
@@ -614,16 +874,158 @@ function getRepName() {
   var v = document.getElementById('callerName').value.trim();
   return v || 'YOUR NAME';
 }
-function getCity() {
-  var v = document.getElementById('callerCity').value.trim();
-  return v || 'your city';
-}
 function injectVars(text) {
   return text.replace(/REP_NAME/g, '<span class="hl-name">' + getRepName() + '</span>');
 }
 
 // ═══════════════════════════════════════════
-// RENDER
+// TAB SYSTEM
+// ═══════════════════════════════════════════
+function switchTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.nav-tab').forEach(function(t) {
+    t.classList.toggle('active', t.dataset.tab === tab);
+  });
+
+  var sidebar = document.getElementById('sidebarLeft');
+  var right = document.getElementById('sidebarRight');
+
+  if (tab === 'dialer') {
+    sidebar.style.display = '';
+    right.style.display = '';
+    if (currentInd) {
+      goTo('opener');
+    } else {
+      showSelectScreen();
+    }
+  } else if (tab === 'checklist') {
+    sidebar.style.display = 'none';
+    right.style.display = 'none';
+    document.getElementById('center').style.cssText = 'padding:24px 40px;overflow-y:auto;max-height:calc(100vh - 88px);grid-column:1/4';
+    renderChecklist();
+  } else if (tab === 'faq') {
+    sidebar.style.display = 'none';
+    right.style.display = 'none';
+    document.getElementById('center').style.cssText = 'padding:24px 40px;overflow-y:auto;max-height:calc(100vh - 88px);grid-column:1/4';
+    renderFAQ();
+  }
+}
+
+// ═══════════════════════════════════════════
+// CHECKLIST RENDER
+// ═══════════════════════════════════════════
+function renderChecklist() {
+  var done = Object.values(checklistState).filter(Boolean).length;
+  var total = CHECKLIST.length;
+  var pct = Math.round((done / total) * 100);
+  var today = new Date().toLocaleDateString('en-CA', {weekday:'long', month:'long', day:'numeric'});
+
+  var sections = {};
+  CHECKLIST.forEach(function(item) {
+    if (!sections[item.section]) sections[item.section] = [];
+    sections[item.section].push(item);
+  });
+
+  var sectHTML = Object.keys(sections).map(function(sec) {
+    var items = sections[sec].map(function(item) {
+      var isDone = checklistState[item.id];
+      var tagMap = {prep:'tag-prep',action:'tag-action',follow:'tag-follow',end:'tag-end'};
+      var tagLabel = {prep:'Product',action:'Pitch',follow:'Objection',end:'Company'};
+      return '<div class="cl-item' + (isDone?' done':'') + '" data-id="' + item.id + '">'
+        + '<div class="cl-check">' + (isDone ? '✓' : '') + '</div>'
+        + '<div class="cl-content">'
+        + '<div class="cl-label">' + item.label + '</div>'
+        + '<div class="cl-note">' + item.note + '</div>'
+        + '</div>'
+        + '<div class="cl-tag ' + tagMap[item.tag] + '">' + tagLabel[item.tag] + '</div>'
+        + '</div>';
+    }).join('');
+    return '<div class="checklist-section">'
+      + '<div class="cs-title">' + sec + '</div>'
+      + '<div class="checklist-items">' + items + '</div>'
+      + '</div>';
+  }).join('');
+
+  document.getElementById('center').innerHTML = '<div class="checklist-screen">'
+    + '<div class="checklist-header"><h2>Daily <span>Checklist</span></h2><p>Run this every session. No shortcuts — the reps who follow the checklist close 2x more.</p></div>'
+    + '<div class="checklist-date"><div class="checklist-date-label">📅 ' + today + '</div><button class="checklist-reset" id="clReset">↺ Reset Day</button></div>'
+    + '<div class="checklist-progress-bar">'
+    + '<div class="cp-top"><div class="cp-title">Session Progress</div><div class="cp-count">' + done + ' / ' + total + ' — ' + pct + '%' + (done===total?' 🔥 All done!':'') + '</div></div>'
+    + '<div class="cp-bar"><div class="cp-fill" style="width:' + pct + '%"></div></div>'
+    + '</div>'
+    + sectHTML + '</div>';
+
+  document.querySelectorAll('.cl-item').forEach(function(el) {
+    el.addEventListener('click', function() {
+      var id = this.dataset.id;
+      checklistState[id] = !checklistState[id];
+      renderChecklist();
+    });
+  });
+
+  document.getElementById('clReset').addEventListener('click', function() {
+    CHECKLIST.forEach(function(item) { checklistState[item.id] = false; });
+    renderChecklist();
+  });
+}
+
+// ═══════════════════════════════════════════
+// FAQ RENDER
+// ═══════════════════════════════════════════
+function renderFAQ() {
+  var cats = ['all','prospect','company','mindset'];
+  var catLabels = {all:'All',prospect:'Prospect Q&A',company:'About JayIsaac AI',mindset:'Sales Mindset'};
+
+  var filtered = faqFilter === 'all' ? FAQ : FAQ.filter(function(f) { return f.cat === faqFilter; });
+
+  var catHTML = cats.map(function(c) {
+    return '<button class="faq-cat-btn' + (faqFilter===c?' active':'') + '" data-cat="' + c + '">' + catLabels[c] + '</button>';
+  }).join('');
+
+  var faqHTML = filtered.map(function(item) {
+    var bullets = item.bullets ? '<div class="faq-bullets">' + item.bullets.map(function(b) {
+      return '<div class="faq-bullet"><span class="faq-bullet-dot">›</span>' + b + '</div>';
+    }).join('') + '</div>' : '';
+    var script = item.script ? '<div class="faq-script-box">' + item.script + '</div>' : '';
+    var warn = item.warn ? '<div class="faq-warn">⚠ ' + item.warn + '</div>' : '';
+    var tip = item.tip ? '<div class="faq-tip">💡 ' + item.tip + '</div>' : '';
+
+    return '<div class="faq-item" data-id="' + item.id + '">'
+      + '<div class="faq-q">'
+      + '<span class="faq-q-icon">' + item.icon + '</span>'
+      + '<div class="faq-q-text">' + item.q + '</div>'
+      + '<span class="faq-q-cat ' + item.catCls + '">' + item.catLabel + '</span>'
+      + '<span class="faq-chevron">›</span>'
+      + '</div>'
+      + '<div class="faq-a">'
+      + '<div class="faq-a-text">' + item.a + '</div>'
+      + script + bullets + warn + tip
+      + '</div>'
+      + '</div>';
+  }).join('');
+
+  document.getElementById('center').innerHTML = '<div class="faq-screen">'
+    + '<div class="faq-header"><h2>Cold Call <span>FAQ</span></h2><p>Hard questions about the product, pricing, tech, and objections — answered with the exact words to say on a call.</p></div>'
+    + '<div class="faq-cats">' + catHTML + '</div>'
+    + '<div class="faq-list">' + faqHTML + '</div>'
+    + '</div>';
+
+  document.querySelectorAll('.faq-cat-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      faqFilter = this.dataset.cat;
+      renderFAQ();
+    });
+  });
+
+  document.querySelectorAll('.faq-item').forEach(function(el) {
+    el.querySelector('.faq-q').addEventListener('click', function() {
+      el.classList.toggle('open');
+    });
+  });
+}
+
+// ═══════════════════════════════════════════
+// DIALER RENDER
 // ═══════════════════════════════════════════
 function goTo(nodeId) {
   if (!currentScript) return;
@@ -635,6 +1037,7 @@ function goTo(nodeId) {
   callPath.push(node.stage + ': ' + node.title.replace(/^[🚧⚡📱📅]\s*/,''));
 
   var center = document.getElementById('center');
+  center.style.cssText = '';
 
   var extraHTML = '';
   if (node.stat) {
@@ -754,6 +1157,9 @@ function selectIndustry(ind) {
   var d = INDUSTRIES[ind];
   document.getElementById('topbarStatus').textContent = d.icon + ' ' + d.name.toUpperCase() + ' — NORTH AMERICA';
   document.getElementById('resetBtn').style.display = '';
+
+  var center = document.getElementById('center');
+  center.style.cssText = '';
   goTo('opener');
 }
 
@@ -763,7 +1169,9 @@ function showSelectScreen() {
   document.getElementById('topbarStatus').textContent = 'SELECT AN INDUSTRY TO BEGIN';
   document.getElementById('resetBtn').style.display = 'none';
 
-  document.getElementById('center').innerHTML = '<div class="select-screen">'
+  var center = document.getElementById('center');
+  center.style.cssText = '';
+  center.innerHTML = '<div class="select-screen">'
     + '<div style="font-size:52px;margin-bottom:14px">📞</div>'
     + '<h1>Cold Call<br><span>Command Center</span></h1>'
     + '<p>North America-wide. Pick your industry, enter your city, and run the script. Every response, every objection — fully mapped.</p>'
@@ -789,8 +1197,14 @@ function buildQuickGrid() {
 // ═══════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════
+document.querySelectorAll('.nav-tab').forEach(function(tab) {
+  tab.addEventListener('click', function() { switchTab(this.dataset.tab); });
+});
 document.querySelectorAll('.ind-btn[data-industry]').forEach(function(btn) {
-  btn.addEventListener('click', function() { selectIndustry(this.dataset.industry); });
+  btn.addEventListener('click', function() {
+    if (currentTab !== 'dialer') switchTab('dialer');
+    selectIndustry(this.dataset.industry);
+  });
 });
 document.getElementById('resetBtn').addEventListener('click', showSelectScreen);
 buildQuickGrid();
